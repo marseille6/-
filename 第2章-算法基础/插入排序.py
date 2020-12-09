@@ -4,7 +4,7 @@ datetime:2020/11/9
 
 """
 class INSERT_SORT:
-    def main_ascend(self,A:[]):# 升序排列
+    def main_ascend(self,A:[]):# 升序排列‘
         for j in range(1,len(A)):
             key = A[j]
             i = j -1
