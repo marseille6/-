@@ -31,15 +31,39 @@ class MergeSort:
             else:
                 A[k] = R[j]
                 j = j + 1
+    ## 不使用哨兵，多加两个判断
+    def mergeX(self,A,p,q,r):
+        n1 = q - p + 1
+        n2 = r - q
+        L = [0 for i in range(n1)]
+        R = [0 for i in range(n2)]
+        for i in range(n1):
+            L[i] = A[p + i]
+        for i in range(n2):
+            R[i] = A[q + i + 1]
+        i = 0
+        j = 0
+        for k in range(p,r + 1):
+            if i >= n1:
+                A[k] = R[j]
+                j = j + 1
+            elif j >= n2:
+                A[k] = L[i]
+                i = i + 1
+            elif L[i] <= R[j]:
+                A[k] = L[i]
+                i = i + 1
+            else:
+                A[k] = R[j]
+                j = j + 1
+
     def merge_sort(self,A,p,r):
         if p < r:
             q = p + (r - p) // 2
             self.merge_sort(A,p,q)
             self.merge_sort(A,q + 1,r)
-            self.merge(A,p,q,r)
+            self.mergeX(A,p,q,r)
 if __name__ == "__main__":
-    A = [5,2,3,1]
+    A = [5,2,3,1,-6,-9,-10,56,99]
     a = MergeSort()
     print(a.main(A))
-    a = 1 << 64
-    print(a)
